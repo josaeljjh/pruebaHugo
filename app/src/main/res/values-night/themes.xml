@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TaskHugo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- Set the navigation bar to 50% translucent white -->
+        <item name="android:navigationBarColor">@color/light_black</item>
+        <!-- Since the nav bar is white, we will use dark icons -->
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">?attr/isLightTheme</item>
+    </style>
+</resources>

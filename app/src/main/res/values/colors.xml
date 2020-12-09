@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="colorBackground">#54A7F5</color>
+    <color name="colorDialog">#fafafa</color>
+    <color name="colorApp">#003F7B</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="negro_dark">#2c2d31</color>
+    <color name="negro_alpha">#CC2c2d31</color>
+    <color name="light_black">#80e6e6e6</color>
+    <color name="morado">#6D60F8</color>
+</resources>
