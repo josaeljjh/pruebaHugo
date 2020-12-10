@@ -16,6 +16,5 @@ class UseCaseUser(private val repo: Repository):UserCase {
     override suspend fun createData(dataUserEntity: DataUserEntity) = repo.createData(dataUserEntity)
     override suspend fun getData(): RealmResults<DataUserEntity> = repo.getDataUser()
     override suspend fun deleteData(id: String): Boolean  = repo.deleteDataId(id)
-    override suspend fun getDataFilter(filter:String): RealmResults<DataUserEntity> = repo.getFilter(filter)
 
 }

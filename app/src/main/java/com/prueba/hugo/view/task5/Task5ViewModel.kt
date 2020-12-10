@@ -19,7 +19,10 @@ import com.prueba.hugo.tools.DynamicBindingAdapter
 import com.prueba.hugo.tools.extensions.expandedDialog
 import com.prueba.hugo.tools.extensions.launchAPIRequest
 import com.prueba.hugo.tools.extensions.setSafeOnClickListener
+import io.realm.RealmResults
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -41,7 +44,6 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
     var showUpdate = MutableLiveData<Boolean>()
 
     var IdSelected:String = ""
-    var delete = false
 
     //bottom sheet
     var sheetUser: CustomBottomSheetBehavior<LinearLayout>? = null
@@ -70,7 +72,6 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
                 datos.forEach { realm ->
                     val user = User(id = realm.id!!, name = realm.name!!,last_name = realm.last_name!!)
                     datosModel.add(user)
-
                 }
                 userData.postValue(datosModel)
             }
@@ -123,10 +124,21 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
 
     fun afterTextChangedFilter(editable: Editable) {
         val filter:String = editable.toString()
-        launchAPIRequest {
-            val datos = case.getDataFilter(filter)
-            if (datos.isNotEmpty()) {
-                Load()
+        if (filter.isEmpty()) {
+            Load()
+        }else{
+            launchAPIRequest {
+                val datos = case.getData()
+                if (datos.isNotEmpty()) {
+                    datosModel.clear()
+                    datos.forEach { realm ->
+                        if (realm.name!!.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase(Locale.getDefault()))) {
+                            val user = User(id = realm.id!!, name = realm.name!!, last_name = realm.last_name!!)
+                            datosModel.add(user)
+                        }
+                    }
+                    userData.postValue(datosModel)
+                }
             }
         }
     }

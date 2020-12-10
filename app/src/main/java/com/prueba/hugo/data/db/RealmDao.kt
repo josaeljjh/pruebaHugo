@@ -51,26 +51,6 @@ fun <T : RealmModel> T.getDataFromId(key: String): RealmResults<T> {
     return data
 }
 
-fun <T : RealmModel> T.getDataFilter(filter: String): RealmResults<T> {
-    val realm = Realm.getDefaultInstance()
-    lateinit var data: RealmResults<T>
-    try {
-        realm.beginTransaction()
-        data = realm.where(javaClass)
-            .equalTo("name", filter)
-            .or()
-            .equalTo("last_name", filter)
-            .findAll()
-            .sort("name", Sort.ASCENDING)
-    } catch (e: Exception) {
-        println(e.message)
-        realm.cancelTransaction()
-    } finally {
-        realm.commitTransaction()
-    }
-    return data
-}
-
 fun <T : RealmModel> T.clearData() {
     val realm = Realm.getDefaultInstance()
     lateinit var data: RealmResults<T>

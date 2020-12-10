@@ -14,5 +14,4 @@ interface RepositoryCase {
     suspend fun getDataUser(): RealmResults<DataUserEntity>
     suspend fun createData(dataUserEntity: DataUserEntity)
     suspend fun deleteDataId(id:String):Boolean
-    suspend fun getFilter(filter:String): RealmResults<DataUserEntity>
 }

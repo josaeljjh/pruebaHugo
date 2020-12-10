@@ -12,5 +12,4 @@ interface UserCase {
     suspend fun getData(): RealmResults<DataUserEntity>
     suspend fun createData(dataUserEntity: DataUserEntity)
     suspend fun deleteData(id:String):Boolean
-    suspend fun getDataFilter(filter:String): RealmResults<DataUserEntity>
 }

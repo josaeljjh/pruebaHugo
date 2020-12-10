@@ -20,8 +20,4 @@ class Repository: RepositoryCase {
     override suspend fun deleteDataId(id:String):Boolean{
         return DataUserEntity().clearDataFromId(id)
     }
-
-    override suspend fun getFilter(id: String): RealmResults<DataUserEntity> {
-        return DataUserEntity().getDataFilter(id)
-    }
 }
