@@ -1,8 +1,10 @@
 package com.prueba.hugo.view.home
 
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.prueba.hugo.App
 import com.prueba.hugo.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -18,7 +20,7 @@ class HomeViewModel() : ViewModel() {
     lateinit var navViewModel: NavController
 
     fun onClick() {
-
+        Toast.makeText(App.context, "Proximamente", Toast.LENGTH_SHORT).show()
     }
 
     fun onClickTask1() {
