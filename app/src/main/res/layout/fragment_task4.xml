@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="task4"
+            type="com.prueba.hugo.view.task4.Task4ViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentMaster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".view.home.HomeFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@color/negro_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/temporizador"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            android:layout_marginTop="@dimen/_30sdp"
+            >
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBarCircle"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="@dimen/_220sdp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/drawable_circle_dark_blue"
+                android:indeterminate="false"
+                android:max="@{task4.progressBarMax}"
+                android:progress="@{task4.progressBar}"
+                android:progressDrawable="@drawable/drawable_circle_yellow"
+                android:rotation="-90"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/textMinute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:gravity="center"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:minEms="5"
+                android:text="@{task4.txtMinute}"
+                tools:text="1"
+                android:textColor="@color/negro_alpha"
+                android:textColorHint="@color/gris_hint"
+                app:layout_constraintBottom_toTopOf="@+id/txtTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/_14sdp"
+                />
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@={task4.txtTime}"
+                    tools:text="@string/_00_01_00"
+                    android:textColor="@color/negro_alpha"
+                    android:textSize="@dimen/_16sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seekBar"
+            android:max="60"
+            android:progress="@={task4.playbackSpeed}"
+            android:onProgressChanged="@{task4.onSeekBarChanged}"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:progressTint="@color/negro_dark"
+            android:progressBackgroundTint="@color/negro_alpha"
+            android:visibility="@{task4.showPlay ? View.VISIBLE : View.GONE}"
+            />
+
+        <Button
+            android:id="@+id/btnPlay"
+            style="@style/Button.Primary"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:onClick="@{()-> task4.onClickPlayStop()}"
+            android:text="@string/play"
+            app:elevation="@dimen/_2sdp"
+            app:iconTint="@android:color/white"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
+            android:visibility="@{task4.showPlay ? View.VISIBLE : View.GONE}"
+            />
+
+        <Button
+            android:id="@+id/btnStop"
+            style="@style/Button.Primary"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:onClick="@{()-> task4.onClickPlayStop()}"
+            android:text="@string/stop"
+            app:elevation="@dimen/_2sdp"
+            app:iconTint="@android:color/white"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            android:visibility="@{task4.showStop ? View.VISIBLE : View.GONE}"
+            />
+
+        <Button
+            android:id="@+id/btnReset"
+            style="@style/Button.Primary"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:onClick="@{()-> task4.onClickReset()}"
+            android:text="Reset"
+            app:elevation="@dimen/_2sdp"
+            app:iconTint="@android:color/white"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnStop"
+            android:visibility="@{task4.showStop ? View.VISIBLE : View.GONE}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

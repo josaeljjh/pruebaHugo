@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">TaskHugo</string>
+    <string name="task_1">Task #1</string>
+    <string name="task_2">Task #2</string>
+    <string name="task_3">Task #3</string>
+    <string name="task_4">Task #4</string>
+    <string name="task_5">Task #5</string>
+    <string name="task_6">Task #6</string>
+    <string name="task_7">Task #7</string>
+    <string name="home">Home</string>
+    <string name="text_indicate_count">Para aumentar el contador debes de presionar el simbolo \n\n +</string>
+    <string name="convertir_temperatura">Convertir Temperatura</string>
+    <string name="celcius">Celcius</string>
+    <string name="cel">0 °C</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="fah">32 °F</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="temporizador">Temporizador</string>
+    <string name="hint_minute">Minute</string>
+    <string name="message_minutes">Ingrese los minutos...</string>
+    <string name="_00_01_00">00:01:00</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="contador">Contador</string>
+
+    <string name="hint_out_date">Fecha de salida</string>
+    <string name="hint_back_date">Fecha de retorno</string>
+    <string name="text_method_fly">Seleccione un tipo de vuelo</string>
+    <string name="text_select_method_fly">Selecciona un metodo de vuelo seguido de sus respectivas fechas segun sea el caso</string>
+    <string name="cancel">Cancelar</string>
+    <string name="text_title_dialog_travel">Reserva de Vuelo</string>
+    <string name="text_error_message_travel">No puedes seleccionar una fecha de retorno inferior a la fecha de salida, favor selecciona una nueva fecha de retorno</string>
+    <string name="reservar_vuelo">Reservar vuelo</string>
+    <string name="crud">CRUD</string>
+    <string name="espacio"> </string>
+    <string name="apellido">Apellido</string>
+    <string name="nombre">Nombre</string>
+
 </resources>

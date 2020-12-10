@@ -24,8 +24,4 @@ class HostActivity : AppCompatActivity() {
         masterHost.marginUpdate()
     }
 
-    override fun onBackPressed() {
-        //super.onBackPressed()
-        moveTaskToBack(true)
-    }
 }

@@ -9,6 +9,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 /**
  * Created by Josaél Hernández on 12/8/20.
@@ -35,6 +37,14 @@ class App: Application() {
             // load modules here
             modules(InyectModule.inyectModule)
         }
+
+        Realm.init(this)
+        val realmConfiguration = RealmConfiguration.Builder()
+                .name("BDTask.realm")
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
+                .build()
+        Realm.setDefaultConfiguration(realmConfiguration)
     }
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)

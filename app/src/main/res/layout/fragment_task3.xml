@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="task3"
+            type="com.prueba.hugo.view.task3.Task3ViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentMaster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".view.home.HomeFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@color/negro_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Reserva de vuelos"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btnSendTravelReport"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtDescTransferenceAction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/text_select_method_fly"
+                    android:textColor="@color/negro_alpha"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+
+                <TextView
+                    android:id="@+id/etDepartmentTravelReport"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_button_secondary"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|start"
+                    android:hint="@string/text_method_fly"
+                    android:longClickable="false"
+                    android:onClick="@{() -> task3.showOptions()}"
+                    android:padding="@dimen/_3sdp"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="@{task3.option}"
+                    android:textColor="@color/colorInputText"
+                    android:textColorHint="@color/colorInputText"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableEndCompat="@drawable/ic_arrow_down"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDescTransferenceAction"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/etOutDateTravelReport"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_button_secondary"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|start"
+                    android:hint="@string/hint_out_date"
+                    android:longClickable="false"
+                    android:onClick="@{() -> task3.showDialogDate(false)}"
+                    android:padding="@dimen/_3sdp"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="@{task3.datetoGo}"
+                    android:textColor="@color/colorInputText"
+                    android:textColorHint="@color/colorInputText"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableEndCompat="@drawable/ic_arrow_down"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etDepartmentTravelReport"
+                    tools:ignore="RtlSymmetry,TextFields" />
+
+                <TextView
+                    android:id="@+id/etBackDateTravelReport"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_button_secondary"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|start"
+                    android:hint="@string/hint_back_date"
+                    android:longClickable="false"
+                    android:onClick="@{() -> task3.showDialogDate(true)}"
+                    android:padding="@dimen/_3sdp"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="@{task3.dateReturn}"
+                    android:textColor="@color/colorInputText"
+                    android:textColorHint="@color/colorInputText"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableEndCompat="@drawable/ic_arrow_down"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etOutDateTravelReport"
+                    tools:ignore="RtlSymmetry,TextFields" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:alpha="0.5"
+                    android:background="@drawable/bg_button_main"
+                    android:backgroundTint="@color/white"
+                    android:clickable="true"
+                    android:elevation="@dimen/_3sdp"
+                    android:visibility="@{task3.visibleReturn ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/etBackDateTravelReport"
+                    app:layout_constraintEnd_toEndOf="@+id/etBackDateTravelReport"
+                    app:layout_constraintStart_toStartOf="@+id/etBackDateTravelReport"
+                    app:layout_constraintTop_toTopOf="@+id/etBackDateTravelReport" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btnSendTravelReport"
+            style="@style/Button.Primary"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_45sdp"
+            app:elevation="@dimen/_2sdp"
+            app:iconTint="@android:color/white"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:text="@string/reservar_vuelo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{() -> task3.showSucess()}"
+            />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_38sdp"
+            android:alpha="0.5"
+            android:background="@drawable/bg_button_main"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:elevation="@dimen/_3sdp"
+            android:visibility="@{task3.enableBtn ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSendTravelReport"
+            app:layout_constraintEnd_toEndOf="@+id/btnSendTravelReport"
+            app:layout_constraintStart_toStartOf="@+id/btnSendTravelReport"
+            app:layout_constraintTop_toTopOf="@+id/btnSendTravelReport" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

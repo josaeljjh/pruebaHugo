@@ -4,8 +4,11 @@ package com.prueba.hugo.tools.extensions
 
 import android.view.View
 import android.view.WindowInsets
+import android.widget.LinearLayout
 import androidx.core.view.updatePadding
-
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.prueba.hugo.tools.CustomBottomSheetBehavior
+import com.prueba.hugo.tools.SafeClickListener
 
 
 /**
@@ -63,3 +66,23 @@ data class InitialPadding(
     val left: Int, val top: Int,
     val right: Int, val bottom: Int
 )
+
+fun View.makeVisibility(visibilidad: Boolean = false) {
+    this.visibility = android.view.View.GONE
+    if (visibilidad) {
+        this.visibility = android.view.View.VISIBLE
+    }
+}
+
+infix fun CustomBottomSheetBehavior<LinearLayout>?.expandedDialog(stateExpanded: Boolean) {
+    this?.let {
+        it.state = if(stateExpanded) BottomSheetBehavior.STATE_EXPANDED else BottomSheetBehavior.STATE_HIDDEN
+    }
+}
+
+fun View.setSafeOnClickListener(onSafeClick: (View) -> Unit) {
+    val safeClickListener = SafeClickListener { view ->
+        onSafeClick(view)
+    }
+    setOnClickListener(safeClickListener)
+}

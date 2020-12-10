@@ -1,0 +1,34 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "name": "Joseph",
+      "last_name": "Jacobo"
+    },
+    {
+      "id": "2",
+      "name": "Victor",
+      "last_name": "Lopez"
+    },
+    {
+      "id": "3",
+      "name": "Walter",
+      "last_name": "Orlando"
+    },
+    {
+      "id": "4",
+      "name": "Juan",
+      "last_name": "Landaverde"
+    },
+    {
+      "id": "5",
+      "name": "Michelle",
+      "last_name": "Hernandez"
+    },
+    {
+      "id": "6",
+      "name": "Cristian",
+      "last_name": "Castro"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#3F51B5</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#CC2c2d31</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="colorBackground">#54A7F5</color>
@@ -15,4 +15,11 @@
     <color name="negro_alpha">#CC2c2d31</color>
     <color name="light_black">#80e6e6e6</color>
     <color name="morado">#6D60F8</color>
+    <color name="transparent">#00000000</color>
+    <color name="gris_hint">#8C8C8C</color>
+    <color name="colorYellow">#F8D73A</color>
+    <color name="purple_500">#6200ee</color> <!--Color primary (light)-->
+    <color name="colorInputText">#919397</color>
+    <color name="colorLine">#EBEAEA</color>
+    <color name="light_white">#4D1b81f8</color>
 </resources>

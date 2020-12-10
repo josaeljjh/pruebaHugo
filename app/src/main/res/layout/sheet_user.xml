@@ -1,0 +1,243 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="sheetUser"
+            type="com.prueba.hugo.view.task5.Task5ViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/master"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/MyCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardElevation="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lytAccountMovement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidelineStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.03" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidelineEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.97" />
+
+                    <ImageView
+                        android:id="@+id/icon_line"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toTopOf="@+id/content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_rectangle"
+                        app:tint="@color/negro_alpha" />
+
+
+                    <LinearLayout
+                        android:id="@+id/content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
+                        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+                        app:layout_constraintTop_toBottomOf="@+id/icon_line">
+
+
+
+                        <TextView
+                            android:id="@+id/txtTitleTokenDialog"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="center"
+                            android:text="@{sheetUser.txtTitle}"
+                            tools:text="Datos"
+                            android:textColor="@color/negro_alpha"
+                            android:textSize="@dimen/_16sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txtName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="center_horizontal"
+                            android:text="@string/nombre"
+                            android:textColor="@color/negro_alpha"
+                            android:textSize="@dimen/_12sdp"
+                            tools:text="Nombre" />
+
+                        <EditText
+                            android:id="@+id/edittName"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_37sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:afterTextChanged="@{sheetUser.afterTextChanged}"
+                            android:text="@{sheetUser.txtName}"
+                            android:background="@drawable/bg_button_secondary"
+                            android:hint="@string/nombre"
+                            android:imeOptions="actionDone"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingEnd="@dimen/_5sdp"
+                            android:textAlignment="center"
+                            android:textColor="@color/negro_alpha"
+                            android:textColorHint="@color/gris_hint"
+                            android:textSize="@dimen/_12sdp"
+                        />
+
+                        <TextView
+                            android:id="@+id/txtLast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="center_horizontal"
+                            android:text="@string/apellido"
+                            android:textColor="@color/negro_alpha"
+                            android:textSize="@dimen/_12sdp"
+                            tools:text="Apellido"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            />
+
+                        <EditText
+                            android:id="@+id/edittLast"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_37sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:afterTextChanged="@{sheetUser.afterTextChangedL}"
+                            android:text="@{sheetUser.txtLast}"
+                            android:background="@drawable/bg_button_secondary"
+                            android:hint="@string/apellido"
+                            android:imeOptions="actionDone"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingEnd="@dimen/_5sdp"
+                            android:textAlignment="center"
+                            android:textColor="@color/negro_alpha"
+                            android:textColorHint="@color/gris_hint"
+                            android:textSize="@dimen/_12sdp"
+                         />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            >
+
+                            <Button
+                                android:id="@+id/btnDelete"
+                                style="@style/Button.Primary"
+                                android:layout_width="@dimen/_110sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="@dimen/_3sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:onClick="@{()-> sheetUser.onClickDelete()}"
+                                android:text="Eliminar"
+                                app:elevation="@dimen/_2sdp"
+                                app:iconTint="@android:color/white"
+                                android:visibility="@{sheetUser.showDelete ? View.VISIBLE : View.GONE}"
+                                />
+
+                            <Button
+                                android:id="@+id/btnUpdate"
+                                style="@style/Button.Primary"
+                                android:layout_width="@dimen/_110sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:onClick="@{()-> sheetUser.onClickUpdate()}"
+                                android:text="Actualizar"
+                                app:elevation="@dimen/_2sdp"
+                                app:iconTint="@android:color/white"
+                                android:visibility="@{sheetUser.showUpdate ? View.VISIBLE : View.GONE}"
+                                />
+
+                            <Button
+                                android:id="@+id/btnCreate"
+                                style="@style/Button.Primary"
+                                android:layout_width="@dimen/_110sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:onClick="@{()-> sheetUser.CreateUser()}"
+                                android:text="Crear"
+                                app:elevation="@dimen/_2sdp"
+                                app:iconTint="@android:color/white"
+                                android:visibility="@{sheetUser.showCreate ? View.VISIBLE : View.GONE}"
+                                />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/btnShare"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:adjustViewBounds="true"
+                        android:elevation="@dimen/_3sdp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/negro_alpha"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="180"
+                        android:onClick="@{()-> sheetUser.onClickBack()}"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>
