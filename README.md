@@ -1,5 +1,5 @@
 # pruebaHugo
-proyecto de prueba con arquitectura Clean Arquitecture, DataBinding y Koin como inyector de dependencias.
+proyecto de prueba con arquitectura MVVM + Clean Arquitecture, DataBinding y Koin como inyector de dependencias.
 
 pruebaHugo es un proyector con multiples tareas.
 
