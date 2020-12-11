@@ -10,7 +10,8 @@ pruebaHugo es un proyector con multiples tareas.
   * Task3 - Reserva de vuelos con tipo de ida o ida/retorno.
   * Task4 - Temporizador con barra de progreso con opcion de parar o reiniciar temporizador.
   * Task5 - CRUD base de datos en Realm montrando lista de usuarios y a la ves permitiendo filtrar, agregar, eliminar o actualizar.
-  
+  * Task6 - Dibujar circulo permitiendo manipular el tamaño mediante un SeekBar
+
   ### Librerias
 
 * [Koin] - Libreria que permite inyeccion de dependencias

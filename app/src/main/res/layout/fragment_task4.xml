@@ -32,14 +32,15 @@
                 android:id="@+id/txtTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="@string/temporizador"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,8 +109,22 @@
                     app:layout_constraintTop_toTopOf="parent"
                     />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/tiempo"
+            android:textColor="@color/negro_alpha"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            android:visibility="@{task4.showPlay ? View.VISIBLE : View.GONE}"
+            />
 
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/seekBar"
@@ -120,8 +135,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/Time"
+            android:layout_marginTop="@dimen/_5sdp"
             android:progressTint="@color/negro_dark"
             android:progressBackgroundTint="@color/negro_alpha"
             android:visibility="@{task4.showPlay ? View.VISIBLE : View.GONE}"
@@ -167,7 +182,7 @@
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_45sdp"
             android:onClick="@{()-> task4.onClickReset()}"
-            android:text="Reset"
+            android:text="@string/reset"
             app:elevation="@dimen/_2sdp"
             app:iconTint="@android:color/white"
             android:layout_marginTop="@dimen/_5sdp"

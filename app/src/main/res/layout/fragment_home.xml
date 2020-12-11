@@ -125,7 +125,7 @@
             style="@style/Button.Primary"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_45sdp"
-            android:onClick="@{()-> home.onClick()}"
+            android:onClick="@{()-> home.onClickTask6()}"
             android:text="@string/task_6"
             app:elevation="@dimen/_2sdp"
             app:iconTint="@android:color/white"

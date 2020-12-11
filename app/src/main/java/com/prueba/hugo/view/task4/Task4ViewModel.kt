@@ -27,7 +27,7 @@ class Task4ViewModel : ViewModel() {
     var showReset = SingleLiveEvent<Boolean>()
     var txtTime = MutableLiveData<String>()
     var txtMinute = MutableLiveData<String>()
-
+    var minute:Int? = null
     var playbackSpeed = MutableLiveData<Int>()
 
     var progressBar = MutableLiveData<Int>()
@@ -48,7 +48,8 @@ class Task4ViewModel : ViewModel() {
         showReset.postValue(false)
         txtTime.value = getString(R.string._00_01_00)
         playbackSpeed.value = 1
-        txtMinute.value = "1"
+        txtMinute.value = "1 m"
+        minute = 1
         progressBar.value = 100
         progressBarMax.value = 100
     }
@@ -70,7 +71,8 @@ class Task4ViewModel : ViewModel() {
     }
 
     fun onSeekBarChanged(seekBar: SeekBar, progress:Int, fromUser:Boolean){
-        txtMinute.value = progress.toString()
+        txtMinute.value = "${progress.toString()} m"
+        minute = progress
     }
 
     /**
@@ -110,7 +112,7 @@ class Task4ViewModel : ViewModel() {
         var time = 0
         if (txtMinute.value.toString().isNotEmpty()) {
             // fetching value from edit text and type cast to integer
-            time = txtMinute.value.toString().trim().toInt()
+            time = minute!!
         } else {
             // toast message
             Toast.makeText(context, getString(R.string.message_minutes), Toast.LENGTH_LONG).show()
@@ -138,7 +140,11 @@ class Task4ViewModel : ViewModel() {
                 // changing stop icon to start icon
                 showPlay.postValue(true)
                 showStop.postValue(false)
-                txtMinute.value = "1"
+
+                txtTime.value = getString(R.string._00_00_00)
+                playbackSpeed.value = 0
+                txtMinute.value = "0 m"
+                minute = 0
                 // changing the timer status to stopped
                 timerStatus = TimerStatus.STOPPED
             }

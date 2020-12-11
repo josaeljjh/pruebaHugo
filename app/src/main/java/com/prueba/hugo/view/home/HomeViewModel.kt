@@ -38,5 +38,8 @@ class HomeViewModel() : ViewModel() {
     fun onClickTask5() {
         navViewModel.navigate(R.id.action_task5)
     }
+    fun onClickTask6() {
+        navViewModel.navigate(R.id.action_task6)
+    }
 }
 

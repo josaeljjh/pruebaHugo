@@ -84,6 +84,19 @@
             app:popUpTo="@+id/main_navigation"
             app:popUpToInclusive="true"
             />
+
+        <action
+            android:id="@+id/action_task6"
+            app:destination="@id/Task6"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_navigation"
+            app:popUpToInclusive="true"
+            />
+
     </fragment>
 
     <!-- Task1 -->
@@ -91,43 +104,41 @@
         android:id="@+id/Task1"
         android:name="com.prueba.hugo.view.task1.Task1Fragment"
         android:label="fragment_view_transaction"
-        tools:layout="@layout/fragment_task1">
-
-    </fragment>
+        tools:layout="@layout/fragment_task1"/>
 
     <!-- Task2 -->
     <fragment
         android:id="@+id/Task2"
         android:name="com.prueba.hugo.view.task2.Task2Fragment"
         android:label="fragment_view_transaction"
-        tools:layout="@layout/fragment_task2">
-
-    </fragment>
+        tools:layout="@layout/fragment_task2"/>
 
     <!-- Task3 -->
     <fragment
         android:id="@+id/Task3"
         android:name="com.prueba.hugo.view.task3.Task3Fragment"
         android:label="fragment_view_transaction"
-        tools:layout="@layout/fragment_task3">
-
-    </fragment>
+        tools:layout="@layout/fragment_task3"/>
 
     <!-- Task4 -->
     <fragment
         android:id="@+id/Task4"
         android:name="com.prueba.hugo.view.task4.Task4Fragment"
         android:label="fragment_view_transaction"
-        tools:layout="@layout/fragment_task4">
-
-    </fragment>
+        tools:layout="@layout/fragment_task4"/>
 
     <!-- Task5 -->
     <fragment
         android:id="@+id/Task5"
         android:name="com.prueba.hugo.view.task5.Task5Fragment"
         android:label="fragment_view_transaction"
-        tools:layout="@layout/fragment_task5">
+        tools:layout="@layout/fragment_task5"/>
 
-    </fragment>
+    <!-- Task6 -->
+    <fragment
+        android:id="@+id/Task6"
+        android:name="com.prueba.hugo.view.task6.Task6Fragment"
+        android:label="fragment_view_transaction"
+        tools:layout="@layout/fragment_task6"/>
+
 </navigation>
