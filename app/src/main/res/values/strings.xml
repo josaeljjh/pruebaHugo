@@ -42,5 +42,6 @@
     <string name="crear">Crear</string>
     <string name="actualizar">Actualizar</string>
     <string name="eliminar">Eliminar</string>
-
+    <string name="dibujar">Dibujar Circulo</string>
+    <string name="eliminar_circulo">Eliminar Circulo</string>
 </resources>
