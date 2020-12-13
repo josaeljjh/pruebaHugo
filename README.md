@@ -11,6 +11,7 @@ pruebaHugo es un proyector con multiples tareas.
   * Task4 - Temporizador con barra de progreso con opcion de parar o reiniciar temporizador.
   * Task5 - CRUD base de datos en Realm montrando lista de usuarios y a la ves permitiendo filtrar, agregar, eliminar o actualizar.
   * Task6 - Dibujar circulo permitiendo manipular el tamaño mediante un SeekBar
+  * Task7 - CRUD base de datos Reactiva Room + Flow montrando lista de usuarios y a la ves permitiendo filtrar, agregar, eliminar o actualizar.
 
   ### Librerias
 
