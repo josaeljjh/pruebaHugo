@@ -19,3 +19,8 @@ import com.prueba.hugo.data.models.User
 fun TextView.setName(user: User) {
     this.text = "${user.name} ${user.last_name}"
 }
+
+@BindingAdapter("txtName2")
+fun TextView.setName2(user: com.prueba.hugo.data.db.room.Person) {
+    this.text = "${user.name} ${user.last_name}"
+}

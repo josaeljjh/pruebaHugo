@@ -113,7 +113,7 @@
                  android:id="@+id/seekBar"
                  android:max="100"
                  android:progress="@={task6.progressSeek}"
-                 android:onProgressChanged="@{task6.onSeekBarChanged}"
+                 android:onProgressChanged="@{task6::onSeekBarChanged}"
                  android:layout_width="@dimen/_200sdp"
                  android:layout_height="wrap_content"
                  android:layout_marginTop="@dimen/_10sdp"

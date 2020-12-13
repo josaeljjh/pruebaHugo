@@ -32,7 +32,8 @@
     <string name="text_title_dialog_travel">Reserva de Vuelo</string>
     <string name="text_error_message_travel">No puedes seleccionar una fecha de retorno inferior a la fecha de salida, favor selecciona una nueva fecha de retorno</string>
     <string name="reservar_vuelo">Reservar vuelo</string>
-    <string name="crud">CRUD</string>
+    <string name="crud_realm">CRUD REALM</string>
+    <string name="crud_room">CRUD ROOM</string>
     <string name="espacio"> </string>
     <string name="apellido">Apellido</string>
     <string name="nombre">Nombre</string>

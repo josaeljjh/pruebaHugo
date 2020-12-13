@@ -1,6 +1,8 @@
-package com.prueba.hugo.domain.address
+package com.prueba.hugo.domain.user
 
-import com.prueba.hugo.data.db.DataUserEntity
+import androidx.room.Update
+import com.prueba.hugo.data.db.realm.DataUserEntity
+import com.prueba.hugo.data.db.room.Person
 import io.realm.RealmResults
 import kotlinx.coroutines.flow.Flow
 
@@ -12,4 +14,12 @@ interface UserCase {
     suspend fun getData(): RealmResults<DataUserEntity>
     suspend fun createData(dataUserEntity: DataUserEntity)
     suspend fun deleteData(id:String):Boolean
+
+    suspend fun getDataPerson(): Flow<List<Person>>
+    suspend fun insertDataPerson(person: Person)
+    suspend fun getById(id: Int): Flow<Person>
+    suspend fun delete(person: Person)
+    suspend fun deleteById(id: Int)
+    suspend fun update(person: Person)
+    suspend fun getSearch(search: String?): Flow<List<Person>>
 }

@@ -5,12 +5,12 @@
     <data>
         <import type="android.view.View" />
         <variable
-            name="sheetUser"
-            type="com.prueba.hugo.view.task5.Task5ViewModel" />
+            name="sheetPerson"
+            type="com.prueba.hugo.view.task7.Task7ViewModel" />
     </data>
 
     <LinearLayout
-        android:id="@+id/bottom_sheet"
+        android:id="@+id/sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_bold"
                             android:gravity="center"
-                            android:text="@{sheetUser.txtTitle}"
+                            android:text="@{sheetPerson.txtTitle}"
                             tools:text="Datos"
                             android:textColor="@color/negro_alpha"
                             android:textSize="@dimen/_16sdp"
@@ -115,8 +115,8 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginEnd="@dimen/_10sdp"
-                            android:afterTextChanged="@{sheetUser::afterTextChanged}"
-                            android:text="@{sheetUser.txtName}"
+                            android:afterTextChanged="@{sheetPerson::afterTextChanged}"
+                            android:text="@{sheetPerson.txtName}"
                             android:background="@drawable/bg_button_secondary"
                             android:hint="@string/nombre"
                             android:imeOptions="actionDone"
@@ -150,8 +150,8 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginEnd="@dimen/_10sdp"
-                            android:afterTextChanged="@{sheetUser::afterTextChangedL}"
-                            android:text="@{sheetUser.txtLast}"
+                            android:afterTextChanged="@{sheetPerson::afterTextChangedL}"
+                            android:text="@{sheetPerson.txtLast}"
                             android:background="@drawable/bg_button_secondary"
                             android:hint="@string/apellido"
                             android:imeOptions="actionDone"
@@ -179,11 +179,11 @@
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="@dimen/_3sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
-                                android:onClick="@{()-> sheetUser.onClickDelete()}"
+                                android:onClick="@{()-> sheetPerson.onClickDelete()}"
                                 android:text="@string/eliminar"
                                 app:elevation="@dimen/_2sdp"
                                 app:iconTint="@android:color/white"
-                                android:visibility="@{sheetUser.showDelete ? View.VISIBLE : View.GONE}"
+                                android:visibility="@{sheetPerson.showDelete ? View.VISIBLE : View.GONE}"
                                 />
 
                             <Button
@@ -194,11 +194,11 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_3sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
-                                android:onClick="@{()-> sheetUser.onClickUpdate()}"
+                                android:onClick="@{()-> sheetPerson.onClickUpdate()}"
                                 android:text="@string/actualizar"
                                 app:elevation="@dimen/_2sdp"
                                 app:iconTint="@android:color/white"
-                                android:visibility="@{sheetUser.showUpdate ? View.VISIBLE : View.GONE}"
+                                android:visibility="@{sheetPerson.showUpdate ? View.VISIBLE : View.GONE}"
                                 />
 
                             <Button
@@ -209,15 +209,13 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_3sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
-                                android:onClick="@{()-> sheetUser.CreateUser()}"
+                                android:onClick="@{()-> sheetPerson.CreateUser()}"
                                 android:text="@string/crear"
                                 app:elevation="@dimen/_2sdp"
                                 app:iconTint="@android:color/white"
-                                android:visibility="@{sheetUser.showCreate ? View.VISIBLE : View.GONE}"
+                                android:visibility="@{sheetPerson.showCreate ? View.VISIBLE : View.GONE}"
                                 />
                         </LinearLayout>
-
-
                     </LinearLayout>
 
                     <ImageView
@@ -234,7 +232,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:rotation="180"
-                        android:onClick="@{()-> sheetUser.onClickBack()}"
+                        android:onClick="@{()-> sheetPerson.onClickBack()}"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>

@@ -1,4 +1,4 @@
-package com.prueba.hugo.data.db
+package com.prueba.hugo.data.db.realm
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

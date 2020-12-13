@@ -142,7 +142,7 @@
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:onClick="@{()-> home.onClick()}"
+            android:onClick="@{()-> home.onClickTask7()}"
             android:text="@string/task_7"
             app:elevation="@dimen/_2sdp"
             app:iconTint="@android:color/white"

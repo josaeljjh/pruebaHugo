@@ -8,19 +8,20 @@
         <import type="android.view.View" />
 
         <variable
-            name="task5"
-            type="com.prueba.hugo.view.task5.Task5ViewModel" />
+            name="task7"
+            type="com.prueba.hugo.view.task7.Task7ViewModel" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/masterTask7"
+        >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contentMaster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".view.home.HomeFragment">
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header"
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="@string/crud_realm"
+                android:text="@string/crud_room"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +68,7 @@
                     android:padding="@dimen/_10sdp">
 
                     <EditText
-                        android:id="@+id/edittSearch"
+                        android:id="@+id/edittSearch2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/transparent"
@@ -81,11 +82,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="@dimen/_14sdp"
-                        android:afterTextChanged="@{task5::afterTextChangedFilter}"
+                        android:afterTextChanged="@{task7::afterTextChangedFilter}"
                         android:hint="Buscar"
                         android:drawableStart="@drawable/ic_search"
                         android:drawablePadding="@dimen/_10sdp"
-                        android:textAlignment="textStart"
                         />
 
 
@@ -94,7 +94,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,32 +107,31 @@
             >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listRecycler"
+                android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layoutAnimation="@anim/layout_animation_fall_down"
-                tools:itemCount="1"
-                tools:listitem="@layout/item_list" />
+                tools:itemCount="1" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
-            layout="@layout/sheet_user"
-            app:sheetUser="@{task5}"
+            layout="@layout/sheet_person"
+            app:sheetPerson="@{task7}"
             app:layout_insetEdge="bottom" />
 
         <View
             android:id="@+id/separador"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_50sdp"
-            app:layout_anchor="@+id/bottom_sheet" />
+            app:layout_anchor="@+id/sheet" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnMyLocation"
+            android:id="@+id/btnCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{()-> task5.onClickCreate()}"
+            android:onClick="@{()-> task7.onClickCreate()}"
             app:backgroundTint="@color/negro_dark"
             app:elevation="@dimen/_3sdp"
             app:fabSize="normal"

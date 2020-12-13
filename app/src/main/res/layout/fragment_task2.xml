@@ -101,7 +101,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="@dimen/_12sdp"
-                        android:afterTextChanged="@{task2.afterTextChangedC}"
+                        android:afterTextChanged="@{task2::afterTextChangedC}"
                         android:hint="@{task2.hintCelsius}"
                         android:text="@{task2.celsius}"
                         />
@@ -179,7 +179,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="@dimen/_12sdp"
-                        android:afterTextChanged="@{task2.afterTextChangedF}"
+                        android:afterTextChanged="@{task2::afterTextChangedF}"
                         android:hint="@{task2.hintFahrenheit}"
                         android:text="@{task2.fahrenheit}"
                         />

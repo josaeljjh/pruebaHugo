@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import androidx.room.Room
+import com.prueba.hugo.data.db.room.PersonDB
 import com.prueba.hugo.di.module.InyectModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
@@ -38,6 +40,7 @@ class App: Application() {
             modules(InyectModule.inyectModule)
         }
 
+        // Realm Database instance
         Realm.init(this)
         val realmConfiguration = RealmConfiguration.Builder()
                 .name("BDTask.realm")
@@ -45,7 +48,9 @@ class App: Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(realmConfiguration)
+
     }
+
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)

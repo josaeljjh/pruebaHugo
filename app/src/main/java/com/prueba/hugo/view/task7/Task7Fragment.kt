@@ -1,4 +1,4 @@
-package com.prueba.hugo.view.task5
+package com.prueba.hugo.view.task7
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +11,13 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.prueba.hugo.R
 import com.prueba.hugo.data.db.room.Person
-import com.prueba.hugo.data.models.User
-import com.prueba.hugo.databinding.FragmentTask5Binding
+import com.prueba.hugo.databinding.FragmentTask7Binding
 import com.prueba.hugo.tools.CustomBottomSheetBehavior
 import com.prueba.hugo.tools.DynamicBindingAdapter
 import com.prueba.hugo.tools.extensions.configureRecyclerBinding
-import kotlinx.android.synthetic.main.fragment_task5.*
-import kotlinx.android.synthetic.main.sheet_user.*
+import kotlinx.android.synthetic.main.fragment_task7.*
+import kotlinx.android.synthetic.main.sheet_person.*
+
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,14 +26,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Contact : josaeljjh@gmail.com
  */
 @ExperimentalCoroutinesApi
-class Task5Fragment : Fragment() {
-    private var task5Binding: FragmentTask5Binding? = null
-    private val viewModel by viewModel<Task5ViewModel>()
+class Task7Fragment : Fragment() {
+  private var task7Binding: FragmentTask7Binding? = null
+    private val viewModel by viewModel<Task7ViewModel>()
     lateinit var navController: NavController
-    private var optionsAdapter: DynamicBindingAdapter<User>? = null
+    private var optionsAdapter: DynamicBindingAdapter<Person>? = null
 
-    private val bottomSheet by lazy {
-        CustomBottomSheetBehavior.from(bottom_sheet)
+    private val sheetPerson by lazy {
+        CustomBottomSheetBehavior.from(sheet)
     }
 
     override fun onCreateView(
@@ -42,13 +42,11 @@ class Task5Fragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         //  return inflater.inflate(R.layout.fragment_home, container, false)
-        return task5Binding?.root ?: FragmentTask5Binding.inflate(inflater, container, false)
-            .apply {
-                lifecycleOwner = viewLifecycleOwner
-                task5 = viewModel
-            }.root
+        return task7Binding?.root ?: FragmentTask7Binding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+            task7 = viewModel
+        }.root
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
@@ -67,31 +65,32 @@ class Task5Fragment : Fragment() {
         observer()
         initDialogSheet()
     }
-
     private fun initDialogSheet() {
-        viewModel.sheetUser = bottomSheet
+        viewModel.sheetUser = sheetPerson
+        viewModel.master = masterTask7
         viewModel.init()
     }
 
     private fun observer() {
         viewModel.userData.observe(viewLifecycleOwner, Observer { data ->
             data?.let {
-                if (data.isNotEmpty()) {
-                    updateListOptions(data)
+                if(data.isNotEmpty()){
+                   updateListOptions(data)
                 }
             }
-
         })
     }
 
-    private fun updateListOptions(list: List<User>) {
+
+  private fun updateListOptions(list:List<Person>) {
         optionsAdapter = viewModel.getAdapterOptions(list)
         optionsAdapter?.let { dynamic ->
-            listRecycler?.configureRecyclerBinding(dynamic)
-            listRecycler.setHasFixedSize(false)
-            listRecycler.adapter?.notifyDataSetChanged()
-            listRecycler.scheduleLayoutAnimation()
+            recycler?.configureRecyclerBinding(dynamic)
+            recycler.setHasFixedSize(false)
+            recycler.adapter?.notifyDataSetChanged()
+            recycler.scheduleLayoutAnimation()
             dynamic.notifyDataSetChanged()
         }
     }
+
 }

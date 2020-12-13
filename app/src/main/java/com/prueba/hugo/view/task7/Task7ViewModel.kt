@@ -1,28 +1,32 @@
-package com.prueba.hugo.view.task5
+package com.prueba.hugo.view.task7
 
-import android.app.Person
 import android.text.Editable
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.gson.Gson
 import com.prueba.hugo.App.Companion.context
 import com.prueba.hugo.R
-import com.prueba.hugo.data.db.realm.DataUserEntity
+import com.prueba.hugo.data.db.room.Person
 import com.prueba.hugo.data.models.User
 import com.prueba.hugo.data.models.UserModel
-import com.prueba.hugo.databinding.ItemListBinding
+import com.prueba.hugo.databinding.ItemList2Binding
 import com.prueba.hugo.domain.user.UseCaseUser
 import com.prueba.hugo.tools.CustomBottomSheetBehavior
 import com.prueba.hugo.tools.DynamicBindingAdapter
 import com.prueba.hugo.tools.extensions.expandedDialog
+import com.prueba.hugo.tools.extensions.hideKeyboard
 import com.prueba.hugo.tools.extensions.launchAPIRequest
 import com.prueba.hugo.tools.extensions.setSafeOnClickListener
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import java.util.*
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.*
 import kotlin.collections.ArrayList
 
 
@@ -30,10 +34,11 @@ import kotlin.collections.ArrayList
  * Created by Josaél Hernández on 12/9/20.
  * Contact : josaeljjh@gmail.com
  */
-@ExperimentalCoroutinesApi
-class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
 
-    var userData = MutableLiveData<List<User>>()
+@ExperimentalCoroutinesApi
+class Task7ViewModel(private val case: UseCaseUser) : ViewModel() {
+
+    var userData = MutableLiveData<List<com.prueba.hugo.data.db.room.Person>>()
     var datosModel:ArrayList<User> = ArrayList()
 
     var txtTitle = MutableLiveData<String>()
@@ -44,10 +49,13 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
     var showDelete = MutableLiveData<Boolean>()
     var showUpdate = MutableLiveData<Boolean>()
 
-    var IdSelected:String = ""
+    var IdSelected:Int = 0
 
     //bottom sheet
     var sheetUser: CustomBottomSheetBehavior<LinearLayout>? = null
+    var master: CoordinatorLayout? = null
+
+    private val searchChanel = ConflatedBroadcastChannel<String>()
 
     fun init() {
         sheetUser?.isHideable = true
@@ -62,19 +70,20 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
 
     private fun LoadData() {
         launchAPIRequest {
-            val datos = case.getData()
-            if(datos.isEmpty()){
-                //serealizar datos
-                val jsonString = context.resources.openRawResource(R.raw.users).bufferedReader().use { it.readText() }
-                val data = Gson().fromJson(jsonString, UserModel::class.java)
-                createBD(data.user as ArrayList<User>)
-            }else{
-                datosModel.clear()
-                datos.forEach { realm ->
-                    val user = User(id = realm.id!!, name = realm.name!!,last_name = realm.last_name!!)
-                    datosModel.add(user)
+            try {
+                case.getDataPerson().collect { datos ->
+                    if (datos.isEmpty()) {
+                        //serealizar datos
+                        val jsonString =
+                            context.resources.openRawResource(R.raw.users).bufferedReader()
+                                .use { it.readText() }
+                        val data = Gson().fromJson(jsonString, UserModel::class.java)
+                        createBD(data.user as ArrayList<User>)
+                    } else {
+                        userData.postValue(datos)
+                    }
                 }
-                userData.postValue(datosModel)
+            } catch (e: Exception) {
             }
         }
     }
@@ -83,28 +92,37 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
         launchAPIRequest {
             if (data.isNotEmpty()) {
                 data.forEach { user ->
-                    val User = DataUserEntity()
-                    User.id = user.id
-                    User.name = user.name
-                    User.last_name = user.last_name
+                    val person = com.prueba.hugo.data.db.room.Person(
+                        user.id.toInt(),user.name, user.last_name
+                    )
                     try {
-                        case.createData(User)
+                        case.insertDataPerson(person)
                     } catch (e: Exception) {
                     }
                 }
-                Load()
+               Load()
             }
         }
     }
 
-    fun getAdapterOptions(list:List<User>): DynamicBindingAdapter<User>? {
-        var adapter: DynamicBindingAdapter<User>? = null
+    fun Load(){
+        launchAPIRequest {
+            case.getDataPerson().collect { datos ->
+                if (datos.isNotEmpty()) {
+                    userData.postValue(datos)
+                }
+            }
+        }
+    }
+
+    fun getAdapterOptions(list:List<com.prueba.hugo.data.db.room.Person>): DynamicBindingAdapter<com.prueba.hugo.data.db.room.Person>? {
+        var adapter: DynamicBindingAdapter<com.prueba.hugo.data.db.room.Person>? = null
         try {
             adapter = DynamicBindingAdapter(
-                R.layout.item_list,
+                R.layout.item_list2,
                 list,
                 fun(vh, view, data, _) {
-                    view as ItemListBinding
+                    view as ItemList2Binding
                     view.list = data
                     vh.itemView.setSafeOnClickListener {
                         UpdateDelete(data)
@@ -124,21 +142,13 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
     }
 
     fun afterTextChangedFilter(editable: Editable) {
-        val filter:String = editable.toString()
-        if (filter.isEmpty()) {
-            Load()
-        }else{
-            launchAPIRequest {
-                val datos = case.getData()
-                if (datos.isNotEmpty()) {
-                    datosModel.clear()
-                    datos.forEach { realm ->
-                        if (realm.name!!.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase(Locale.getDefault()))) {
-                            val user = User(id = realm.id!!, name = realm.name!!, last_name = realm.last_name!!)
-                            datosModel.add(user)
-                        }
-                    }
-                    userData.postValue(datosModel)
+        val filter: String = editable.toString()
+        launchAPIRequest {
+            if (filter.isEmpty()) {
+                Load()
+            } else {
+                case.getSearch(filter).collect { search ->
+                    userData.postValue(search)
                 }
             }
         }
@@ -168,23 +178,20 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
         if (!values.contains("")) {
             sheetUser expandedDialog false
             launchAPIRequest {
-                val User = DataUserEntity()
-                User.id = txtName.value + txtLast.value + System.currentTimeMillis().toString()
-                User.name = txtName.value
-                User.last_name = txtLast.value
+               val person = com.prueba.hugo.data.db.room.Person(0,txtName.value!!, txtLast.value!!)
                 try {
-                    case.createData(User)
-                    Load()
+                    case.insertDataPerson(person)
                 } catch (e: Exception) {
                 }
             }
+            //master?.hideKeyboard()
             Toast.makeText(context, "Usuario Creado", Toast.LENGTH_SHORT).show()
         }else{
             Toast.makeText(context, "Completa los campos", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun UpdateDelete(data: User){
+    fun UpdateDelete(data: com.prueba.hugo.data.db.room.Person){
         if (sheetUser?.state == BottomSheetBehavior.STATE_EXPANDED){
             sheetUser expandedDialog false
         }else{
@@ -201,8 +208,9 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
 
     fun onClickDelete(){
         launchAPIRequest {
-            case.deleteData(IdSelected)
-            Load()
+            try {
+                case.deleteById(IdSelected)
+            } catch (e: Exception) { }
         }
         sheetUser expandedDialog false
         Toast.makeText(context, "Usuario Eliminado", Toast.LENGTH_SHORT).show()
@@ -214,34 +222,17 @@ class Task5ViewModel(private val case: UseCaseUser) : ViewModel() {
         if (!values.contains("")) {
             sheetUser expandedDialog false
             launchAPIRequest {
-                val User = DataUserEntity()
-                User.id = IdSelected
-                User.name = txtName.value
-                User.last_name = txtLast.value
+                val person = com.prueba.hugo.data.db.room.Person(
+                    IdSelected,txtName.value!!, txtLast.value!!
+                )
                 try {
-                    case.createData(User)
-                    Load()
+                    case.update(person)
                 } catch (e: Exception) {
                 }
             }
             Toast.makeText(context, "Usuario Actualizado", Toast.LENGTH_SHORT).show()
         }else{
             Toast.makeText(context, "Completa los campos", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    fun Load(){
-        launchAPIRequest {
-            val datos = case.getData()
-            if (datos.isNotEmpty()) {
-                datosModel.clear()
-                datos.forEach { realm ->
-                    val user =
-                        User(id = realm.id!!, name = realm.name!!, last_name = realm.last_name!!)
-                    datosModel.add(user)
-                }
-                userData.postValue(datosModel)
-            }
         }
     }
 }

@@ -18,5 +18,5 @@ data class UserModel(
 data class User(
     val id: String,
     val name: String,
-    val last_name: String,
+    val last_name: String
 ): Parcelable
